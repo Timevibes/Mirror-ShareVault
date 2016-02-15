@@ -1,0 +1,33 @@
+ #include "ReedDef.h"
+
+void setup () {
+  ReedSetup ();
+}
+
+byte x;
+enum {one,two} next =one;
+
+void loop () {      //check if Reed Sensor aktief...
+  if (RS >= 100) {x=1;}
+  else {x=0;} 
+  
+ switch(next) {
+   case one: 
+   Breathe ();      //amulet verlichting als er geen magneet is
+   if (x==1) {next=two;}
+   if (x==0) {next=one;}
+   break;
+   
+   case two:
+   Circles ();      //pulseerende kringe naar buiten toe als er een magneet is
+   if (x==0) {next=one;}
+   if (x==1) {next=two;}
+   break;
+ }
+   
+  
+}
+    
+  
+  
+ 
